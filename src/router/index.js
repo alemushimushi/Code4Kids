@@ -2,6 +2,9 @@ import { route } from 'quasar/wrappers'
 import { createRouter, createMemoryHistory, createWebHistory, createWebHashHistory } from 'vue-router'
 import routes from './routes'
 
+//import { auth } from 'src/boot/firebase'
+//import { useAuth } from '@vueuse/firebase'
+
 /*
  * If not building with SSR mode, you can
  * directly export the Router instantiation;
@@ -10,6 +13,8 @@ import routes from './routes'
  * async/await or return a Promise which resolves
  * with the Router instance.
  */
+import { useAuth } from '@vueuse/firebase'
+import { auth } from 'src/boot/firebase'
 
 export default route(function (/* { store, ssrContext } */) {
   const createHistory = process.env.SERVER

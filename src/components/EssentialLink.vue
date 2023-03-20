@@ -1,15 +1,7 @@
 <template>
-  <q-item
-    clickable
-    tag="a"
-    target="_blank"
-    :href="link"
-  >
-    <q-item-section
-      v-if="icon"
-      avatar
-    >
-      <q-icon :name="icon" />
+  <q-item clickable :active-class="claseActivada" :to="link" exact>
+    <q-item-section v-if="icon" avatar>
+      <q-avatar :icon="icon" :color="color" text-color="white" />
     </q-item-section>
 
     <q-item-section>
@@ -41,6 +33,21 @@ export default defineComponent({
     },
 
     icon: {
+      type: String,
+      default: ''
+    },
+
+    claseActivada: {
+      type: String,
+      default: ''
+    },
+
+    clase: {
+      type: String,
+      default: ''
+    },
+
+    color: {
       type: String,
       default: ''
     }

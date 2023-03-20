@@ -1,17 +1,25 @@
 <template>
   <q-page class="flex flex-center">
-    <img
-      alt="Quasar logo"
-      src="~assets/quasar-logo-vertical.svg"
-      style="width: 200px; height: 200px"
-    >
+    <CartaAcceso v-if="!isAuthenticated" />
+    <div v-else> Aqui andamos logueados </div>
   </q-page>
 </template>
 
 <script>
-import { defineComponent } from 'vue'
+import CartaAcceso from 'src/components/CartaAcceso.vue';
+import { auth } from 'src/boot/firebase';
+import { useAuth } from '@vueuse/firebase';
 
-export default defineComponent({
-  name: 'IndexPage'
-})
+export default {
+  name: 'IndexPage',
+  components: {
+    CartaAcceso
+  },
+  setup() {
+    const { isAuthenticated, user } = useAuth(auth);
+    return {
+      isAuthenticated, user
+    }
+  }
+}
 </script>

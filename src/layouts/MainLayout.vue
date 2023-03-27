@@ -12,17 +12,17 @@
 
         <div class=" q-gutter-lg">
           <q-btn rounded push dense icon="favorite" color="white" text-color="red-10" size="lg">{{ !isAuthenticated ? '0'
-            : 'aqui hay vidas' }}</q-btn>
+            : '52' }}</q-btn>
 
           <q-btn rounded push dense icon="star" color="white" text-color="yellow-14" size="lg">{{ !isAuthenticated ? '0' :
-            'Aqui hay estrellas' }}</q-btn>
+            '90' }}</q-btn>
         </div>
 
       </q-toolbar>
     </q-header>
 
     <q-drawer v-model="leftDrawerOpen" show-if-above elevated>
-      <q-img class="absolute-top" src="https://cdn.quasar.dev/img/material.png" style="height: 150px">
+      <q-img class="absolute-top" src="../assets/fondo.jpg" style="height: 150px">
         <div class="absolute-bottom bg-transparent">
           <q-avatar size="56px" class="q-mb-sm">
             <img src="https://cdn.quasar.dev/img/boy-avatar.png">
@@ -160,30 +160,17 @@ export default defineComponent({
   setup() {
     const $q = useQuasar()
 
+    const { isAuthenticated, user } = useAuth(auth)
+
     // showing an example on a method, but
     // can be any part of Vue script
     function show() {
       // prints out Quasar version
       console.log($q.version)
     }
-
     const leftDrawerOpen = ref(false)
 
-    const { isAuthenticated, user } = useAuth(auth)
 
-    const datosUsuario = () => {
-      db.collection('usuarios').doc(user.value.uid).get()
-        .then((doc) => {
-          if (doc.exists) {
-            console.log("Document data:", doc.data());
-          } else {
-            // doc.data() will be undefined in this case
-            console.log("No such document!");
-          }
-        }).catch((error) => {
-          console.log("Error getting document:", error);
-        })
-    }
 
     return {
       show,
@@ -195,7 +182,6 @@ export default defineComponent({
       },
       isAuthenticated,
       user,
-      datosUsuario
     }
   }
 })
